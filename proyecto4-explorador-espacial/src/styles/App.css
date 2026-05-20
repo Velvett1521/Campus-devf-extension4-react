@@ -1,0 +1,459 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.app_container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.panel_control_container {
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.panel_header {
+  background: linear-gradient(135deg, #0f172a, #1e1b4b);
+  color: white;
+  text-align: center;
+  padding: 30px;
+}
+
+.panel_titulo {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.panel_subtitulo {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.panel_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+  padding: 25px;
+}
+
+.componente_titulo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e1b4b;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.indicador_container,
+.motor_container,
+.mapa_container,
+.bitacora_container {
+  background: #f8fafc;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.indicador_container:hover,
+.motor_container:hover,
+.mapa_container:hover,
+.bitacora_container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.combustible_barra_container {
+  background: #e2e8f0;
+  border-radius: 12px;
+  height: 40px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.combustible_barra {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.5s ease;
+  border-radius: 12px;
+}
+
+.combustible_texto {
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.combustible_info {
+  font-size: 13px;
+  color: #475569;
+  text-align: center;
+}
+
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.motor_estado {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.motor_label {
+  font-weight: 600;
+  color: #475569;
+}
+
+.motor_valor {
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.motor_temperatura {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.temperatura_valor {
+  font-weight: 700;
+}
+
+.temperatura_normal {
+  color: #10b981;
+}
+
+.temperatura_alto {
+  color: #f59e0b;
+}
+
+.temperatura_critico {
+  color: #ef4444;
+  animation: parpadeo 0.8s infinite;
+}
+
+.boton_motor {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton_encender {
+  background: #10b981;
+  color: white;
+}
+
+.boton_encender:hover {
+  background: #059669;
+}
+
+.boton_apagar {
+  background: #ef4444;
+  color: white;
+}
+
+.boton_apagar:hover {
+  background: #dc2626;
+}
+
+.planetas_lista {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.planeta_card {
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid #e2e8f0;
+}
+
+.planeta_card:hover {
+  border-color: #4f46e5;
+  transform: translateX(5px);
+}
+
+.planeta_card.seleccionado {
+  background: #e0e7ff;
+  border-color: #4f46e5;
+}
+
+.planeta_nombre {
+  font-weight: 700;
+  color: #1e1b4b;
+  margin-bottom: 5px;
+}
+
+.planeta_info {
+  display: flex;
+  gap: 15px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.sin_planetas {
+  text-align: center;
+  padding: 30px;
+  color: #94a3b8;
+}
+
+.sin_planetas_sub {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.boton_viajar {
+  width: 100%;
+  padding: 12px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton_viajar:hover:not(:disabled) {
+  background: #4338ca;
+  transform: translateY(-2px);
+}
+
+.boton_viajar:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.advertencia_viaje {
+  text-align: center;
+  font-size: 11px;
+  color: #ef4444;
+  margin-top: 8px;
+}
+
+.bitacora_stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.bitacora_stat {
+  flex: 1;
+  text-align: center;
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.stat_numero {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+  color: #4f46e5;
+}
+
+.stat_label {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.resumen_viaje {
+  background: #e0e7ff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4f46e5;
+}
+
+.planetas_visitados_lista {
+  margin-bottom: 20px;
+}
+
+.planetas_visitados_lista h4 {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+.visita_registro {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.visita_nombre {
+  font-weight: 600;
+  color: #1e1b4b;
+}
+
+.visita_fecha {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.boton_recargar {
+  width: 100%;
+  padding: 12px;
+  background: #f59e0b;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton_recargar:hover {
+  background: #d97706;
+}
+
+.registro_container {
+  background: #0f172a;
+  color: white;
+  padding: 25px;
+  border-top: 1px solid #1e293b;
+}
+
+.registro_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.registro_header .componente_titulo {
+  color: white;
+  border-bottom-color: #334155;
+  margin-bottom: 0;
+}
+
+.boton_limpiar_registro {
+  padding: 8px 16px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.eventos_lista {
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.evento_item {
+  padding: 6px 0;
+  border-bottom: 1px solid #334155;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.evento_tiempo {
+  color: #94a3b8;
+}
+
+.evento_mensaje {
+  flex: 1;
+}
+
+.sin_eventos {
+  text-align: center;
+  padding: 30px;
+  color: #94a3b8;
+}
+
+.sin_eventos p:first-child {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.leyenda_eventos {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.leyenda_titulo {
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #94a3b8;
+}
+
+.leyenda_items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.leyenda_item {
+  font-size: 10px;
+  background: #334155;
+  padding: 3px 8px;
+  border-radius: 12px;
+  color: #cbd5e1;
+}
+
+@media (max-width: 768px) {
+  .panel_grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .registro_header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .panel_titulo {
+    font-size: 24px;
+  }
+}
