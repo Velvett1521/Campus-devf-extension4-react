@@ -1,0 +1,334 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.app_container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.lista_compras_container {
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.lista_header {
+  background: linear-gradient(135deg, #0f766e, #0d9488);
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.lista_titulo {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.lista_subtitulo {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.formulario_producto {
+  padding: 25px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.formulario_grupo {
+  margin-bottom: 15px;
+}
+
+.formulario_grupo_row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.formulario_grupo_small {
+  flex: 0 0 100px;
+}
+
+.formulario_grupo_large {
+  flex: 1;
+}
+
+.formulario_label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.formulario_input,
+.formulario_select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.formulario_input:focus,
+.formulario_select:focus {
+  outline: none;
+  border-color: #0d9488;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+.boton_submit {
+  background: #0d9488;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton_submit:hover {
+  background: #0f766e;
+  transform: translateY(-2px);
+}
+
+.vacio_mensaje {
+  text-align: center;
+  padding: 60px 30px;
+  color: #64748b;
+}
+
+.vacio_mensaje p:first-child {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.vacio_submensaje {
+  font-size: 14px;
+}
+
+.productos_lista {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item_producto {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.item_producto:hover {
+  background: #f1f5f9;
+  transform: translateX(5px);
+}
+
+.item_comprado {
+  opacity: 0.7;
+  background: #fef9c3;
+}
+
+.item_comprado .item_nombre {
+  text-decoration: line-through;
+  color: #713f12;
+}
+
+.item_checkbox input {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: #0d9488;
+}
+
+.item_info {
+  flex: 1;
+}
+
+.item_nombre {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.item_meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+
+.item_cantidad {
+  color: #64748b;
+}
+
+.item_categoria {
+  padding: 2px 8px;
+  border-radius: 20px;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.item_acciones {
+  display: flex;
+  gap: 8px;
+}
+
+.boton_editar,
+.boton_eliminar {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton_editar {
+  background: #3b82f6;
+  color: white;
+}
+
+.boton_editar:hover {
+  background: #2563eb;
+}
+
+.boton_eliminar {
+  background: #ef4444;
+  color: white;
+}
+
+.boton_eliminar:hover {
+  background: #dc2626;
+}
+
+.resumen_container {
+  background: #f1f5f9;
+  padding: 25px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.resumen_stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.stat_item {
+  text-align: center;
+  flex: 1;
+}
+
+.stat_valor {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f766e;
+}
+
+.stat_label {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.progreso_container {
+  margin-bottom: 20px;
+}
+
+.progreso_barra {
+  background: #e2e8f0;
+  height: 8px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progreso_fill {
+  background: linear-gradient(90deg, #0d9488, #14b8a6);
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+.progreso_texto {
+  font-size: 12px;
+  color: #64748b;
+  text-align: center;
+  display: block;
+}
+
+.boton_limpiar {
+  width: 100%;
+  padding: 12px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton_limpiar:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .formulario_grupo_row {
+    flex-direction: column;
+  }
+  
+  .formulario_grupo_small,
+  .formulario_grupo_large {
+    width: 100%;
+  }
+  
+  .boton_submit {
+    width: 100%;
+  }
+  
+  .item_producto {
+    flex-wrap: wrap;
+  }
+  
+  .item_acciones {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .resumen_stats {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
