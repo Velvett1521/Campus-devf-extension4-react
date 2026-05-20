@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Portafolio de Proyectos | DEV.F - Galería Dinámica</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, 'Segoe UI', 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f8fafc 0%, #eef2f5 100%);
+      color: #0a0f1c;
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(2px);
+      border-radius: 3rem;
+      padding: 2rem 2rem 2rem 2rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      margin-bottom: 2.8rem;
+      position: relative;
+    }
+
+    .titulo {
+      font-size: 3.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1E2A5E, #2E3A6B, #0f172a);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .subtitulo {
+      font-size: 1.2rem;
+      color: #2c3e50;
+      margin-top: 0.5rem;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+
+    .decoracion {
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #a855f7, #ec489a);
+      margin: 1.2rem auto 0;
+      border-radius: 4px;
+    }
+
+    /* FILTROS (neobrutalismo suave) */
+    .filtros {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-bottom: 3rem;
+    }
+
+    .filtro-btn {
+      background: white;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.3px;
+      color: #1e293b;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      border: 1px solid #e2e8f0;
+    }
+
+    .filtro-btn:hover {
+      transform: translateY(-3px);
+      background: #f1f5f9;
+      border-color: #94a3b8;
+      box-shadow: 0 10px 20px -8px rgba(0,0,0,0.1);
+    }
+
+    .filtro-btn.activo {
+      background: #0f172a;
+      color: white;
+      border-color: #0f172a;
+      box-shadow: 0 8px 14px -6px rgba(15,23,42,0.3);
+    }
+
+    /* GRID PROYECTOS */
+    .grid-proyectos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    /* TARJETA MODERNA */
+    .tarjeta {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(4px);
+      border-radius: 2rem;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255,255,255,0.6);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.2);
+      border-color: #cbd5e1;
+    }
+
+    .tarjeta-header {
+      padding: 1.2rem 1.5rem 0.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px dashed #e9eef3;
+    }
+
+    .badge {
+      background: #eef2ff;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #1e40af;
+      letter-spacing: 0.3px;
+    }
+
+    .numero {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #cbd5e1;
+      font-family: monospace;
+    }
+
+    .tarjeta-body {
+      padding: 1.3rem 1.5rem;
+      flex: 1;
+    }
+
+    .proyecto-titulo {
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(120deg, #0f172a, #2d3a5e);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .proyecto-descripcion {
+      color: #334155;
+      line-height: 1.5;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .tecnologias {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+
+    .tech {
+      background: #f1f5f9;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #0c4a6e;
+    }
+
+    .tarjeta-footer {
+      padding: 1rem 1.5rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      border-top: 1px solid #ecf3fa;
+      margin-top: auto;
+    }
+
+    .btn {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.6rem 0;
+      border-radius: 40px;
+      transition: 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn-demo {
+      background: #0f172a;
+      color: white;
+      border: 1px solid #0f172a;
+    }
+
+    .btn-demo:hover {
+      background: #2d3a6e;
+      transform: scale(0.97);
+    }
+
+    .btn-codigo {
+      background: transparent;
+      color: #1e293b;
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-codigo:hover {
+      background: #eef2ff;
+      border-color: #3b82f6;
+    }
+
+    .btn-demo-node {
+      background: #2b3b2c;
+      border-color: #2b3b2c;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      color: #475569;
+    }
+
+    .footer-small {
+      font-size: 0.75rem;
+      margin-top: 0.4rem;
+      opacity: 0.7;
+    }
+
+    /* MODAL GENERAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 550px;
+      width: 90%;
+      padding: 2rem;
+      border-radius: 2rem;
+      position: relative;
+      animation: modalFade 0.3s ease;
+      box-shadow: 0 30px 40px rgba(0,0,0,0.3);
+    }
+
+    @keyframes modalFade {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-close, .modal-close-node {
+      position: absolute;
+      right: 1.5rem;
+      top: 1rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #6c757d;
+      transition: 0.2s;
+    }
+
+    .modal-close:hover, .modal-close-node:hover {
+      color: black;
+    }
+
+    #modal_body, #modal_node_body {
+      margin-top: 1.2rem;
+      line-height: 1.5;
+    }
+
+    .code-block {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 1rem;
+      font-family: monospace;
+      font-size: 0.8rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    hr {
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        padding: 1rem;
+      }
+      .titulo {
+        font-size: 2.3rem;
+      }
+      .filtro-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.75rem;
+      }
+      .grid-proyectos {
+        gap: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <h1 class="titulo">📁 Mis Proyectos</h1>
+    <p class="subtitulo">Galería de proyectos desarrollados durante el curso — estructura modular por carpetas</p>
+    <div class="decoracion"></div>
+  </header>
+
+  <div class="filtros">
+    <button class="filtro-btn activo" data-filtro="todos">✨ Todos</button>
+    <button class="filtro-btn" data-filtro="frontend">🖥️ Frontend</button>
+    <button class="filtro-btn" data-filtro="asincronia">⏳ Asincronía</button>
+    <button class="filtro-btn" data-filtro="formularios">📝 Formularios</button>
+    <button class="filtro-btn" data-filtro="api">🌐 API</button>
+    <button class="filtro-btn" data-filtro="juego">🎮 Juego</button>
+    <button class="filtro-btn" data-filtro="nodejs">🟢 Node.js</button>
+  </div>
+
+  <div class="grid-proyectos" id="grid_proyectos">
+    <!-- Los proyectos se inyectarán dinámicamente desde JS para facilitar agregar carpetas nuevas sin editar HTML a cada rato,
+         pero manteniendo fiel el diseño original y la escalabilidad.
+         Además mantengo compatibilidad con la estructura de carpetas estilo "ProyectoX/index.html" y enlaces a GitHub.
+         Los datos se definen en un array central para que agregar nuevo proyecto sea súper fácil -->
+  </div>
+
+  <footer class="footer">
+    <p>💻 Desarrollado con pasión durante el curso de JavaScript Avanzado</p>
+    <p class="footer-small">DEV.F — Proyectos de aprendizaje · Agrega nuevos proyectos en carpetas como "proyecto9", "proyecto10" y actualiza el array</p>
+  </footer>
+</div>
+
+<!-- Modales para código e instrucciones Node -->
+<div id="modal_codigo" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h2>📂 Código del Proyecto</h2>
+    <div id="modal_body"></div>
+  </div>
+</div>
+
+<div id="modal_node" class="modal">
+  <div class="modal-content">
+    <span class="modal-close-node">&times;</span>
+    <h2>🟢 Instrucciones - Proyecto Node.js</h2>
+    <div id="modal_node_body"></div>
+  </div>
+</div>
+
+<script>
+  // ======================== BASE DE DATOS DE PROYECTOS (FÁCILMENTE EXTENSIBLE) ========================
+  // ✨ Para agregar un nuevo proyecto, solo añade un objeto al array 'proyectosData'.
+  // Carpeta sugerida: "proyecto9/index.html" , "proyecto10/index.html", etc.
+  // Los atributos: id, titulo, descripcion, categoria, tecnologias, demoLink, codigoLink, badge, esNodeJs (opcional)
+  const proyectosData = [
+    {
+      id: 1,
+      titulo: "Cafetería Asincrónica",
+      descripcion: "Simulador de pedidos de cafetería usando Event Loop, setTimeout, Promises y async/await. Ideal para entender asincronía.",
+      categoria: "asincronia",
+      tecnologias: ["HTML5", "CSS3", "JavaScript", "Promises"],
+      badge: "JavaScript",
+      demoLink: "Proyecto1/index.html",
+      codigoLink: "https://github.com/Velvett1521/Campus-devf-extension3/commit/d4725f98ff649a2fc616344348726b24a512e230",
+      folderRef: "Proyecto1"
+    },
+    {
+      id: 2,
+      titulo: "Biblioteca Virtual",
+      descripcion: "Sistema de gestión de biblioteca con JSON y callbacks para operaciones asíncronas. Préstamos y devoluciones.",
+      categoria: "frontend",
+      tecnologias: ["HTML5", "CSS3", "JavaScript", "JSON"],
+      badge: "JavaScript",
+      demoLink: "proyecto2/index.html",
+      codigoLink: "https://github.com/Velvett1521/Campus-devf-extension3/commit/d4725f98ff649a2fc616344348726b24a512e230",
+      folderRef: "proyecto2"
+    },
+    {
+      id: 3,
+      titulo: "Rick & Morty API",
+      descripcion: "Consumo de API de Rick and Morty usando Fetch y Axios. Comparativa entre ambas herramientas, interfaz dinámica.",
+      categoria: "api",
+      tecnologias: ["HTML5", "CSS3", "Fetch", "Axios"],
+      badge: "API",
+      demoLink: "proyecto3/index.html",
+      codigoLink: "https://github.com/Velvett1521/Campus-devf-extension3/commit/d503d9a66290ab59b192d228d1baa7b30ed8c4b0",
+      folderRef: "proyecto3"
+    },
+    {
+      id: 4,
+      titulo: "Sistema de Reservas",
+      descripcion: "Restaurante con sistema de reservas usando Promesas y Async/Await con manejo de errores, cancelación y validación.",
+      categoria: "asincronia",
+      tecnologias: ["HTML5", "CSS3", "Promises", "Async/Await"],
+      badge: "Promises",
+      demoLink: "proyecto4/index.html",
+      codigoLink: "https://github.com/Velvett1521/Campus-devf-extension3/commit/774c5951f834543ebad7a3f71c0aa54f1816cfb0",
+      folderRef: "proyecto4"
+    },
+    {
+      id: 5,
+      titulo: "Registro de Eventos",
+      descripcion: "Formulario completo con validaciones, manejo de archivos y almacenamiento local. Persistencia de datos.",
+      categoria: "formularios",
+      tecnologias: ["HTML5", "CSS3", "JavaScript", "LocalStorage"],
+      badge: "Formularios",
+      demoLink: "proyecto5/index.html",
+      codigoLink: "https://github.com/Velvett1521/Campus-devf-extension3/commit/5054c6eda5fddc2d0d4b63ed36eebef83a95b5d5",
+      folderRef: "proyecto5"
+    },
+    {
+      id: 6,
+      titulo: "Validación con Zod",
+      descripcion: "Formulario de registro con validaciones en tiempo real usando la librería Zod. Manejo de errores y tipado.",
+      categoria: "formularios",
+      tecnologias: ["HTML5", "CSS3", "Zod", "JavaScript"],
+      badge: "Zod",
+      demoLink: "proyecto6/index.html",
+      codigoLink: "https://github.com/Velvett1521/Campus-devf-extension3/commit/ee733baa24be5d3728f590d9bb0744c84a4f411d",
+      folderRef: "proyecto6"
+    },
+    {
+      id: 7,
+      titulo: "Explorador de Planetas",
+      descripcion: "Aplicación CLI para explorar el sistema solar. Registra y consulta planetas favoritos desde la terminal. Node.js puro.",
+      categoria: "nodejs",
+      tecnologias: ["Node.js", "npm", "Chalk", "Figlet"],
+      badge: "Node.js",
+      demoLink: null, // especial
+      codigoLink: "https://github.com/Velvett1521/Campus-devf-extension3/commit/ea9a0ebfd51b01c4623b7c827432ae5f97b3e092",
+      folderRef: "proyecto7",
+      esNodeJs: true,
+      instrucciones: "🌟 Proyecto CLI: Navega a la carpeta 'proyecto7', ejecuta `npm install` (si aplica) y después `node index.js` para explorar los planetas. Comandos disponibles: listar, agregar favorito, ver favoritos."
+    },
+    {
+      id: 8,
+      titulo: "Adivina el Número",
+      descripcion: "Juego interactivo con Vite. Adivina el número con diferentes niveles de dificultad, experiencia SPA ligera.",
+      categoria: "juego",
+      tecnologias: ["Vite", "CSS3", "ES Modules", "JavaScript"],
+      badge: "Vite",
+      demoLink: null,
+      codigoLink: "https://github.com/Velvett1521/Campus-devf-extension3/commit/618104fd9ba619523f8ddab0fcd2ebdba5a4d89b",
+      folderRef: "proyecto8",
+      esNodeJs: false,
+      instruccionesNode: "🎮 Proyecto basado en Vite: Abre la carpeta 'proyecto8', ejecuta `npm install` y luego `npm run dev` para jugar desde el navegador."
+    }
+  ];
+
+  // Función para renderizar tarjetas con filtro
+  function renderizarProyectos(filtro = "todos") {
+    const grid = document.getElementById("grid_proyectos");
+    if (!grid) return;
+    
+    const filtrados = proyectosData.filter(proy => {
+      if (filtro === "todos") return true;
+      return proy.categoria === filtro;
+    });
+    
+    if (filtrados.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">✨ No hay proyectos en esta categoría aún. ¡Pronto agregaremos más!</div>`;
+      return;
+    }
+    
+    grid.innerHTML = filtrados.map(proy => {
+      const numeroFormateado = proy.id.toString().padStart(2, '0');
+      // Generar enlaces demo distintos según sea node o normal
+      let demoHtml = '';
+      if (proy.esNodeJs || (proy.categoria === "nodejs")) {
+        demoHtml = `<button class="btn btn-demo btn-demo-node" data-instruccion-node="${proy.id}" style="cursor:pointer;">📘 Ver Instrucciones</button>`;
+      } else if (proy.demoLink) {
+        demoHtml = `<a href="${proy.demoLink}" class="btn btn-demo" target="_blank">🔍 Ver Demo</a>`;
+      } else {
+        demoHtml = `<button class="btn btn-demo" disabled style="opacity:0.5; cursor:not-allowed;">🚧 Demo pronto</button>`;
+      }
+      
+      // Generar tecnologías con spans
+      const techSpans = proy.tecnologias.map(tech => `<span class="tech">${tech}</span>`).join('');
+      
+      // botón código usa modal con info del commit
+      const codigoOnClick = `verCodigoModal('${proy.codigoLink}', '${proy.titulo}')`;
+      
+      return `
+        <div class="tarjeta" data-categoria="${proy.categoria}">
+          <div class="tarjeta-header">
+            <span class="badge">${proy.badge}</span>
+            <span class="numero">${numeroFormateado}</span>
+          </div>
+          <div class="tarjeta-body">
+            <h2 class="proyecto-titulo">${proy.titulo}</h2>
+            <p class="proyecto-descripcion">${proy.descripcion}</p>
+            <div class="tecnologias">
+              ${techSpans}
+            </div>
+          </div>
+          <div class="tarjeta-footer">
+            ${demoHtml}
+            <button class="btn btn-codigo" onclick="${codigoOnClick}">💻 Ver Código</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    // Agregar event listeners para los botones de instrucciones Node (después de render)
+    document.querySelectorAll('[data-instruccion-node]').forEach(btn => {
+      btn.removeEventListener('click', handleNodeClick);
+      btn.addEventListener('click', handleNodeClick);
+    });
+  }
+  
+  function handleNodeClick(e) {
+    const btn = e.currentTarget;
+    const idProyecto = parseInt(btn.getAttribute('data-instruccion-node'));
+    const proyecto = proyectosData.find(p => p.id === idProyecto);
+    if (proyecto && (proyecto.esNodeJs || proyecto.categoria === "nodejs")) {
+      let textoInstrucciones = proyecto.instrucciones || proyecto.instruccionesNode || "Ejecutar en terminal con Node.js. Revisa el README dentro de la carpeta del proyecto.";
+      if (proyecto.titulo.includes("Adivina")) {
+        textoInstrucciones = proyecto.instruccionesNode || "🎮 Proyecto Vite: Ejecuta `npm install` y `npm run dev` para jugar en tu navegador.";
+      }
+      if (proyecto.titulo.includes("Explorador")) {
+        textoInstrucciones = proyecto.instrucciones || "🌌 Explorador de Planetas: Dentro de la carpeta 'proyecto7', ejecuta `node index.js` para menú interactivo. Usa comandos: listar, agregar, favoritos.";
+      }
+      document.getElementById("modal_node_body").innerHTML = `
+        <div style="background:#f8fafc; padding:1rem; border-radius:1rem;">
+          <p style="margin-bottom:1rem;"><strong>📁 ${proyecto.titulo}</strong> — Proyecto del repositorio.</p>
+          <div class="code-block">
+            ${textoInstrucciones}
+          </div>
+          <hr />
+          <p>📎 Revisa el código fuente en GitHub para más detalles de implementación.</p>
+          <button id="btn_cerrar_modal_node_extra" class="btn btn-demo" style="margin-top:1rem; background:#334155;">Cerrar</button>
+        </div>
+      `;
+      const modalNode = document.getElementById("modal_node");
+      modalNode.style.display = "flex";
+      const closeSpan = document.querySelector(".modal-close-node");
+      const closeExtra = document.getElementById("btn_cerrar_modal_node_extra");
+      const closeModalNode = () => { modalNode.style.display = "none"; };
+      if (closeSpan) closeSpan.onclick = closeModalNode;
+      if (closeExtra) closeExtra.onclick = closeModalNode;
+      window.onclick = function(e) { if (e.target === modalNode) modalNode.style.display = "none"; };
+    } else {
+      // fallback: mostrar demo si no aplica
+      alert("Instrucciones: proyecto preparado en carpeta '"+proyecto?.folderRef+"'");
+    }
+  }
+  
+  // Modal de código (puede mostrar enlace)
+  function verCodigoModal(githubLink, tituloProyecto) {
+    const modal = document.getElementById("modal_codigo");
+    const modalBody = document.getElementById("modal_body");
+    modalBody.innerHTML = `
+      <p>📌 Accede al código fuente del proyecto <strong>${tituloProyecto}</strong> en GitHub:</p>
+      <div class="code-block" style="word-break:break-all;">
+        🔗 <a href="${githubLink}" target="_blank" style="color:#3b82f6; text-decoration:underline;">${githubLink}</a>
+      </div>
+      <p style="margin-top: 1rem;">💡 También puedes explorar el repositorio principal para ver el contexto completo.</p>
+      <button id="cerrarModalCodigoBtn" class="btn btn-demo" style="background:#1e293b; margin-top:1rem;">Cerrar</button>
+    `;
+    modal.style.display = "flex";
+    const closeSpan = document.querySelector(".modal-close");
+    const closeBtn = document.getElementById("cerrarModalCodigoBtn");
+    const closeModal = () => { modal.style.display = "none"; };
+    if (closeSpan) closeSpan.onclick = closeModal;
+    if (closeBtn) closeBtn.onclick = closeModal;
+    window.onclick = function(e) { if (e.target === modal) modal.style.display = "none"; };
+  }
+  
+  // Filtros interactivos
+  function initFiltros() {
+    const btns = document.querySelectorAll(".filtro-btn");
+    btns.forEach(btn => {
+      btn.addEventListener("click", function() {
+        const filtroValor = this.getAttribute("data-filtro");
+        btns.forEach(b => b.classList.remove("activo"));
+        this.classList.add("activo");
+        renderizarProyectos(filtroValor);
+      });
+    });
+  }
+  
+  // Inicializar todo y agregar compatibilidad con la función antigua verCodigo (para enlaces onclick de respaldo pero usamos modales)
+  window.verCodigo = function(folderRef) {
+    // legacy support
+    const proyecto = proyectosData.find(p => p.folderRef?.toLowerCase() === folderRef?.toLowerCase());
+    if (proyecto) {
+      verCodigoModal(proyecto.codigoLink, proyecto.titulo);
+    } else {
+      alert("Redirigiendo al repositorio principal");
+      window.open("https://github.com/Velvett1521/Campus-devf-extension3", "_blank");
+    }
+  };
+  
+  window.mostrarInstruccionesNode = function() {
+    const proyectoNode = proyectosData.find(p => p.categoria === "nodejs" && p.id === 7);
+    if (proyectoNode) {
+      const modalNode = document.getElementById("modal_node");
+      document.getElementById("modal_node_body").innerHTML = `
+        <div><strong>${proyectoNode.titulo}</strong><br>${proyectoNode.instrucciones || "Ejecuta mediante Node.js desde la terminal en la carpeta proyecto7."}<br><br><button id="closeNodeModalLegacy" class="btn btn-demo">Cerrar</button></div>
+      `;
+      modalNode.style.display = "flex";
+      document.getElementById("closeNodeModalLegacy").onclick = () => modalNode.style.display = "none";
+      document.querySelector(".modal-close-node").onclick = () => modalNode.style.display = "none";
+    } else {
+      alert("Proyecto Node.js: revisa carpeta proyecto7 en el repositorio.");
+    }
+  };
+  
+  // iniciar render y filtros
+  renderizarProyectos("todos");
+  initFiltros();
+  
+  // también agregar cierre global de modales
+  window.onclick = function(event) {
+    const modalCode = document.getElementById("modal_codigo");
+    const modalNode = document.getElementById("modal_node");
+    if (event.target === modalCode) modalCode.style.display = "none";
+    if (event.target === modalNode) modalNode.style.display = "none";
+  };
+</script>
+</body>
+</html>
