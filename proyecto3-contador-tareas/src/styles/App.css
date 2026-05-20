@@ -1,0 +1,357 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.app_container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.gestor_tareas_container {
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.reloj_container {
+  background: linear-gradient(135deg, #1e1b4b, #312e81);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.reloj_hora {
+  font-size: 48px;
+  font-weight: 700;
+  font-family: monospace;
+  letter-spacing: 4px;
+}
+
+.reloj_fecha {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-top: 8px;
+  text-transform: capitalize;
+}
+
+.tareas_header {
+  padding: 25px 25px 0 25px;
+  text-align: center;
+}
+
+.tareas_titulo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e1b4b;
+  margin-bottom: 8px;
+}
+
+.tareas_subtitulo {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.estadisticas_container {
+  display: flex;
+  gap: 15px;
+  padding: 25px;
+  background: #f8fafc;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.estadistica_card {
+  flex: 1;
+  text-align: center;
+  background: white;
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.estadistica_valor {
+  display: block;
+  font-size: 32px;
+  font-weight: 800;
+  color: #4f46e5;
+}
+
+.estadistica_label {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.estadistica_detalle {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 5px;
+  display: block;
+}
+
+.formulario_tarea {
+  padding: 0 25px 25px 25px;
+}
+
+.formulario_grupo {
+  margin-bottom: 15px;
+}
+
+.formulario_grupo_row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.formulario_grupo_small {
+  flex: 0 0 150px;
+}
+
+.formulario_label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.formulario_input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.formulario_input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.boton_submit {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.boton_submit:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
+}
+
+.filtros_container {
+  display: flex;
+  gap: 10px;
+  padding: 0 25px 20px 25px;
+}
+
+.filtro_boton {
+  flex: 1;
+  padding: 10px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #475569;
+}
+
+.filtro_boton.activo {
+  background: #4f46e5;
+  color: white;
+}
+
+.filtro_boton:hover {
+  background: #e2e8f0;
+}
+
+.lista_tareas {
+  padding: 0 25px 25px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item_tarea {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.item_tarea:hover {
+  background: #f1f5f9;
+  transform: translateX(5px);
+}
+
+.item_completada {
+  opacity: 0.7;
+  background: #e0e7ff;
+}
+
+.item_completada .tarea_nombre {
+  text-decoration: line-through;
+  color: #4338ca;
+}
+
+.tarea_checkbox input {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: #4f46e5;
+}
+
+.tarea_info {
+  flex: 1;
+}
+
+.tarea_nombre {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.tarea_meta {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.tarea_tiempo {
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.tarea_tiempo:hover {
+  background: #e2e8f0;
+}
+
+.editar_icono {
+  margin-left: 8px;
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.tiempo_editor {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tiempo_input {
+  width: 90px;
+  padding: 6px 8px;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.tiempo_guardar,
+.tiempo_cancelar {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tiempo_guardar {
+  background: #10b981;
+  color: white;
+}
+
+.tiempo_cancelar {
+  background: #ef4444;
+  color: white;
+}
+
+.boton_eliminar_tarea {
+  padding: 8px 16px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton_eliminar_tarea:hover {
+  background: #dc2626;
+}
+
+.lista_vacia {
+  text-align: center;
+  padding: 60px 30px;
+  color: #6b7280;
+}
+
+.lista_vacia p:first-child {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.lista_vacia_sub {
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .formulario_grupo_row {
+    flex-direction: column;
+  }
+  
+  .formulario_grupo_small {
+    width: 100%;
+  }
+  
+  .estadisticas_container {
+    flex-direction: column;
+  }
+  
+  .item_tarea {
+    flex-wrap: wrap;
+  }
+  
+  .boton_eliminar_tarea {
+    width: 100%;
+  }
+  
+  .reloj_hora {
+    font-size: 32px;
+  }
+}
