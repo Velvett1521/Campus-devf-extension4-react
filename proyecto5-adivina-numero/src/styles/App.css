@@ -1,0 +1,396 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.app_container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.juego_container {
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.juego_header {
+  background: linear-gradient(135deg, #0f3460, #16213e);
+  color: white;
+  text-align: center;
+  padding: 30px;
+}
+
+.juego_titulo {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.juego_subtitulo {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.panel_control {
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.panel_header_control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  cursor: pointer;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.panel_header_control:hover {
+  background: #e2e8f0;
+}
+
+.panel_titulo_control {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 14px;
+}
+
+.panel_icono {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.panel_contenido {
+  padding: 20px 25px;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+}
+
+.info_actual {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 16px;
+}
+
+.info_item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.info_item strong {
+  font-size: 20px;
+  color: #0f3460;
+}
+
+.rango_editor {
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.rango_input_grupo {
+  flex: 1;
+}
+
+.rango_input_grupo label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 5px;
+}
+
+.rango_input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.rango_input:focus {
+  outline: none;
+  border-color: #0f3460;
+}
+
+.boton_aplicar {
+  padding: 10px 20px;
+  background: #0f3460;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton_aplicar:hover {
+  background: #1a4a7a;
+}
+
+.mensaje_inicial {
+  text-align: center;
+  padding: 30px;
+  background: #e0e7ff;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.mensaje_inicial p:first-child {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e1b4b;
+}
+
+.mensaje_pista {
+  font-size: 13px;
+  color: #4f46e5;
+  margin-top: 8px;
+}
+
+.mensaje_exito {
+  text-align: center;
+  padding: 30px;
+  background: #d1fae5;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.mensaje_gameover {
+  text-align: center;
+  padding: 30px;
+  background: #fee2e2;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.mensaje_grande {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.mensaje_exito .mensaje_grande {
+  color: #065f46;
+}
+
+.mensaje_gameover .mensaje_grande {
+  color: #991b1b;
+}
+
+.mensaje_felicitaciones {
+  font-size: 14px;
+  color: #047857;
+  margin-top: 10px;
+}
+
+.mensaje_pista_container {
+  text-align: center;
+  padding: 25px;
+  background: #fef3c7;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.mensaje_pista_texto {
+  font-size: 20px;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 8px;
+}
+
+.formulario_intento {
+  padding: 0 25px 25px 25px;
+}
+
+.input_grupo {
+  display: flex;
+  gap: 15px;
+}
+
+.input_numero {
+  flex: 2;
+  padding: 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.input_numero:focus {
+  outline: none;
+  border-color: #0f3460;
+}
+
+.input_numero:disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+.boton_adivinar {
+  flex: 1;
+  padding: 15px;
+  background: #0f3460;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton_adivinar:hover:not(:disabled) {
+  background: #1a4a7a;
+  transform: translateY(-2px);
+}
+
+.boton_adivinar:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.historial_container {
+  padding: 0 25px;
+}
+
+.historial_titulo {
+  font-size: 16px;
+  color: #1e293b;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.historial_lista {
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.historial_vacio {
+  text-align: center;
+  padding: 30px;
+  background: #f8fafc;
+  border-radius: 16px;
+  color: #64748b;
+}
+
+.historial_sub {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.historial_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border-left: 4px solid #cbd5e1;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.historial_valor {
+  font-weight: 700;
+  font-size: 16px;
+  color: #1e293b;
+  min-width: 100px;
+}
+
+.historial_mensaje {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mensaje_acierto {
+  color: #059669;
+}
+
+.mensaje_mayor {
+  color: #ea580c;
+}
+
+.mensaje_menor {
+  color: #dc2626;
+}
+
+.mensaje_normal {
+  color: #475569;
+}
+
+.historial_tiempo {
+  font-size: 10px;
+  color: #94a3b8;
+  font-family: monospace;
+}
+
+.boton_reinicio_container {
+  padding: 25px;
+}
+
+.boton_reinicio {
+  width: 100%;
+  padding: 15px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton_reinicio:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .input_grupo {
+    flex-direction: column;
+  }
+  
+  .historial_item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .rango_editor {
+    flex-direction: column;
+  }
+  
+  .info_actual {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .juego_titulo {
+    font-size: 24px;
+  }
+}
